@@ -1,11 +1,10 @@
-name: 'LINE Notify Action'
-description: '利用LINE Notify進行CI結果通知'
+name: LINE Notify Action
+description: 利用LINE Notify進行CI結果通知
 
 inputs:
   token:
-    description: 'LINE Notify Token'
+    description: LINE Notify Token
       required: true
-      default: ''
 runs:
   using: "composite"
   steps:

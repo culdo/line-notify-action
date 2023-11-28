@@ -1,0 +1,13 @@
+name: 'LINE Notify Action'
+description: '利用LINE Notify進行CI結果通知'
+
+runs:
+  using: "composite"
+  steps:
+    - name: CI結果通知
+      env:
+        BUILD_LINK: ${{ gitea.server_url }}/${{ gitea.repository }}/actions/runs/${{ gitea.run_number }}
+      if: ${{ !cancelled() }}
+      run: |
+        [[ ${{ job.status }} = "success" ]] && MSG=${{ vars.SUCCESS_MSG }} || MSG=${{ vars.FAILURE_MSG }}
+        curl -d "message=${BUILD_LINK}%0A${MSG}" -H "Authorization: Bearer ${{ secrets.LINE_NOTIFY_TOKEN }}" -X POST https://notify-api.line.me/api/notify

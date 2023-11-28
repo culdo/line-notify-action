@@ -2,7 +2,7 @@ name: 'LINE Notify Action'
 description: '利用LINE Notify進行CI結果通知'
 
 inputs:
-  line-notify-token: 
+  token: 
     description: 'LINE Notify Token'
       required: true
 runs:
@@ -14,4 +14,4 @@ runs:
       if: ${{ !cancelled() }}
       run: |
         [[ ${{ job.status }} = "success" ]] && MSG=${{ vars.SUCCESS_MSG }} || MSG=${{ vars.FAILURE_MSG }}
-        curl -d "message=${BUILD_LINK}%0A${MSG}" -H "Authorization: Bearer ${{ inputs.line-notify-token }}" -X POST https://notify-api.line.me/api/notify
+        curl -d "message=${BUILD_LINK}%0A${MSG}" -H "Authorization: Bearer ${{ inputs.token }}" -X POST https://notify-api.line.me/api/notify

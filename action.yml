@@ -2,7 +2,7 @@ name: 'LINE Notify Action'
 description: '利用LINE Notify進行CI結果通知'
 
 inputs:
-  token: 
+  token:
     description: 'LINE Notify Token'
       required: true
 runs:

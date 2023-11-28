@@ -4,7 +4,7 @@ description: 利用LINE Notify進行CI結果通知
 inputs:
   token:
     description: LINE Notify Token
-      required: true
+    required: true
 runs:
   using: "composite"
   steps:

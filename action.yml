@@ -15,4 +15,4 @@ runs:
         BUILD_LINK: ${{ gitea.server_url }}/${{ gitea.repository }}/actions/runs/${{ gitea.run_number }}
       run: |
         [[ ${{ inputs.job-status }} = "success" ]] && MSG="${{ vars.SUCCESS_MSG }}" || MSG="${{ vars.FAILURE_MSG }}"
-        curl -d "message=%0A${BUILD_LINK}%0A${MSG}" -H "Authorization: Bearer ${{ inputs.token }}" -X POST https://notify-api.line.me/api/notify
+        curl -d "message=%0A${{ gitea.repository }} ${{ gitea.ref_name }}版%0A${MSG}%0Alogs: ${BUILD_LINK}" -H "Authorization: Bearer ${{ inputs.token }}" -X POST https://notify-api.line.me/api/notify
